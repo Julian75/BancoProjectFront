@@ -15,7 +15,7 @@ export const routes: Routes = [
         component: AgregarClienteComponent
     },
     { 
-        path: 'modificarCliente', 
+        path: 'modificarCliente/:id', 
         component: ModificarClienteComponent
     },
     { 

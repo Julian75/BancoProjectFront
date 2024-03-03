@@ -1,1 +1,67 @@
-<p>agregar-cliente works!</p>
+<div class="contenedor">
+    <form [formGroup]="formulario">
+        <div class="row">
+            <div class="col-4">
+                <h2>Nombres</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese Nombres</mat-label>
+                    <input formControlName="nombres" matInput>
+                </mat-form-field>
+                @if (formulario.get('nombres')?.hasError('minlength')) {
+                    <br>
+                    <mat-label>Nombre debe tener mas de dos caracteres.</mat-label>
+                }
+            </div>
+            <div class="col-4">
+                <h2>Apellidos</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese Apellidos</mat-label>
+                    <input formControlName="apellidos" matInput>
+                </mat-form-field>
+                @if (formulario.get('apellidos')?.hasError('minlength')) {
+                    <br>
+                    <mat-label>Apellido debe tener mas de dos caracteres.</mat-label>
+                }
+            </div>
+            <div class="col-4">
+                <h2>Tipo Identificacion</h2>
+                <mat-form-field>
+                    <mat-label>Seleccione Tipo Identificacion</mat-label>
+                    <mat-select formControlName="tipoIdentificacion">
+                        <mat-option value="C.C">C.C</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div><div class="row">
+            <div class="col-4">
+                <h2>Numero Identificacion</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese Numero Identificacion</mat-label>
+                    <input formControlName="numeroIdentificacion" type="number" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <h2>Correo</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese Correo</mat-label>
+                    <input formControlName="correo" type="email" matInput>
+                </mat-form-field>
+                @if (formulario.get('correo')?.hasError('email')) {
+                    <br>
+                    <mat-label>Debe ingresar un correo valido.</mat-label>
+                }
+            </div>
+            <div class="col-4">
+                <h2>Fecha Nacimiento</h2>
+                <mat-form-field>
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input formControlName="fechaNacimiento" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button style="background-color: #0dcaf0;" (click)="guardarCliente()"><mat-icon>add</mat-icon></button>
+    </form>
+</div>

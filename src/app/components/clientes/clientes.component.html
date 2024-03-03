@@ -1,5 +1,5 @@
 <div class="contenedor">
-    <button routerLink="/agregarCliente" mat-raised-button style="background-color: #0dcaf0;" class="mb-5">Agregar</button>
+    <button routerLink="/agregarCliente" mat-raised-button style="background-color: #0dcaf0;" matTooltip="Agregar" class="mb-5"><mat-icon>add_circle</mat-icon></button>
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
       
@@ -25,14 +25,14 @@
           
           <ng-container matColumnDef="fechaNacimiento">
             <th mat-header-cell *matHeaderCellDef>Fecha Nacimiento</th>
-            <td mat-cell *matCellDef="let element">{{element.fechaNacimiento}}</td>
+            <td mat-cell *matCellDef="let element">{{element.fechaNacimiento | date}}</td>
           </ng-container>
           
           <ng-container matColumnDef="opciones">
             <th mat-header-cell *matHeaderCellDef>Opciones</th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="accent" class="me-3" routerLink="/modificarCliente"><mat-icon>edit</mat-icon></button>
-                <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+                <button mat-raised-button color="accent" class="me-3" [routerLink]="['/modificarCliente', element.id]" matTooltip="Editar"><mat-icon>edit</mat-icon></button>
+                <button mat-raised-button color="warn" matTooltip="Eliminar" (click)="eliminarCliente(element.id)"><mat-icon>delete</mat-icon></button>
             </td>
           </ng-container>
       

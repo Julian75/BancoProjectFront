@@ -6,7 +6,7 @@ export class Productos {
     public numeroCuenta: number = 0;
     public estado: string = "";
     public saldo: number = 0;
-    public fecha_creacion: Date = new Date();
+    public fechaCreacion: Date = new Date();
     public fechaModificacion: Date = new Date();
     idCliente !: Clientes
 }

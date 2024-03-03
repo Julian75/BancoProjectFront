@@ -6,6 +6,6 @@ export class Clientes {
     public apellidos: string = "";
     public correo: string = "";
     public fechaNacimiento: Date = new Date();
-    public fecha_creacion: Date = new Date();
+    public fechaCreacion: Date = new Date();
     public fechaModificacion: Date = new Date();
 }

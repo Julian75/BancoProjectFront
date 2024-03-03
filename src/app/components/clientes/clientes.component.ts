@@ -6,11 +6,14 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ClientesService } from '../../services/clientes.service';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [MatIconModule, MatTableModule, MatPaginatorModule, MatButtonModule, RouterLink],
+  imports: [MatIconModule, MatTableModule, MatPaginatorModule, MatButtonModule, RouterLink, DatePipe, MatTooltipModule],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css'
 })
@@ -32,10 +35,31 @@ export class ClientesComponent {
 
   public listarClientes(){
     this.servicioClientes.listarTodos().subscribe(res => {
-      console.log(res)
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+  }
+
+  public eliminarCliente(idCliente: number) {
+    Swal.fire({
+      title: "Esta seguro de eliminar este cliente?",
+      text: "Este procedimiento no podra ser revertido!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicioClientes.eliminar(idCliente).subscribe(res=>{
+          Swal.fire({
+            title: "Cliente Eliminado!",
+            icon: "success"
+          });
+          this.listarClientes()
+        })
+      }
+    });
   }
 }
