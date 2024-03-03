@@ -1,1 +1,35 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+    
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-list>
+            <mat-list-item routerLink="">
+                <mat-icon class="iconosSide" matListItemIcon>groups</mat-icon>
+                <div matListItemTitle>Clientes</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/productos">
+                <mat-icon class="iconosSide" matListItemIcon>account_balance_wallet</mat-icon>
+                <div matListItemTitle>Productos</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/transacciones">
+                <mat-icon class="iconosSide" matListItemIcon>paid</mat-icon>
+                <div matListItemTitle>Transacciones</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+    </mat-drawer>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #96c4c4 !important;">
+        <div class="container-fluid">
+            <mat-icon class="iconoMenu" aria-hidden="false" fontIcon="menu" (click)="drawer.toggle()"></mat-icon>
+        </div>
+    </nav>
+
+  <router-outlet></router-outlet>
+  <!-- <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav    
+    </button>
+  </div> -->
+</mat-drawer-container>

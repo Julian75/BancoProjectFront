@@ -1,0 +1,32 @@
+.example-container {
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: #f5feff;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+  width: 15%;
+  background-color: #f5feff;
+}
+
+.navbar{
+    height: 8%;
+}
+
+.iconoMenu{
+  width: 40px;
+  height: 40px;
+  font-size: 35px;
+}
+
+.iconosSide{
+  color: black !important;
+}

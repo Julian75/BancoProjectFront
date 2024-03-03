@@ -1,0 +1,48 @@
+<div class="contenedor">
+    <button routerLink="/agregarCliente" mat-raised-button style="background-color: #0dcaf0;" class="mb-5">Agregar</button>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+      
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef>Nombres</th>
+            <td mat-cell *matCellDef="let element">{{element.nombres}} {{element.apellidos}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="identificacion">
+            <th mat-header-cell *matHeaderCellDef>Identificacion</th>
+            <td mat-cell *matCellDef="let element">{{element.tipoIdentificacion}} | {{element.numeroIdentificacion}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="correo">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="fechaNacimiento">
+            <th mat-header-cell *matHeaderCellDef>Fecha Nacimiento</th>
+            <td mat-cell *matCellDef="let element">{{element.fechaNacimiento}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="accent" class="me-3" routerLink="/modificarCliente"><mat-icon>edit</mat-icon></button>
+                <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

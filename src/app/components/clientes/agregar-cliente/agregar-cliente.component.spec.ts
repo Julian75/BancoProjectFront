@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VistaComponent } from './vista.component';
+import { AgregarClienteComponent } from './agregar-cliente.component';
 
-describe('VistaComponent', () => {
-  let component: VistaComponent;
-  let fixture: ComponentFixture<VistaComponent>;
+describe('AgregarClienteComponent', () => {
+  let component: AgregarClienteComponent;
+  let fixture: ComponentFixture<AgregarClienteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VistaComponent]
+      imports: [AgregarClienteComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(VistaComponent);
+    fixture = TestBed.createComponent(AgregarClienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
