@@ -1,1 +1,54 @@
-<p>productos works!</p>
+<div class="contenedor">
+    <button mat-raised-button style="background-color: #0dcaf0;" matTooltip="Agregar" class="mb-5" (click)="abrirModalAgregar()"><mat-icon>add_circle</mat-icon></button>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+      
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="tipoCuenta">
+            <th mat-header-cell *matHeaderCellDef>Tipo de Cuenta</th>
+            <td mat-cell *matCellDef="let element">{{element.tipoCuenta}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef>Cliente</th>
+            <td mat-cell *matCellDef="let element">{{element.idCliente.nombres}} {{element.idCliente.apellidos}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="saldo">
+            <th mat-header-cell *matHeaderCellDef>Saldo</th>
+            <td mat-cell *matCellDef="let element">{{element.saldo | currency:'COP':'symbol-narrow'}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado Cuenta</th>
+            <td mat-cell *matCellDef="let element">{{element.estado}}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              @if(element.estado != "Cancelada"){
+                @if(element.estado == "Activa"){
+                  <button (click)="cambiarEstado(element.id)" mat-raised-button color="accent" class="me-3" matTooltip="Inactivar"><mat-icon>person_off</mat-icon></button>
+                }@else{
+                  <button (click)="cambiarEstado(element.id)" mat-raised-button style="background-color: rgb(49, 214, 137);" class="me-3" matTooltip="Activar"><mat-icon>record_voice_over</mat-icon></button>
+                }
+                <button mat-raised-button color="warn" matTooltip="Cancelar" (click)="cancelarCuenta(element.id)"><mat-icon>cancel</mat-icon></button>
+              }
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

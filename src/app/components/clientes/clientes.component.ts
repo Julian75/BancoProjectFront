@@ -9,10 +9,13 @@ import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import Swal from 'sweetalert2';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { ConsultasService } from '../../services/consultas.service';
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [MatIconModule, MatTableModule, MatPaginatorModule, MatButtonModule, RouterLink, DatePipe, MatTooltipModule],
   templateUrl: './clientes.component.html',
   styleUrl: './clientes.component.css'
@@ -26,7 +29,8 @@ export class ClientesComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private servicioClientes: ClientesService
+    private servicioClientes: ClientesService,
+    private servicioConsulta: ConsultasService
   ) {}
 
   ngOnInit(){
@@ -52,12 +56,24 @@ export class ClientesComponent {
       confirmButtonText: "Eliminar!"
     }).then((result) => {
       if (result.isConfirmed) {
-        this.servicioClientes.eliminar(idCliente).subscribe(res=>{
-          Swal.fire({
-            title: "Cliente Eliminado!",
-            icon: "success"
-          });
-          this.listarClientes()
+        this.servicioConsulta.relacionCuenta(idCliente).subscribe(resCliente=>{
+          if(resCliente[0].contadorCliente == 0){
+            this.servicioClientes.eliminar(idCliente).subscribe(res=>{
+              Swal.fire({
+                title: "Cliente Eliminado!",
+                icon: "success"
+              });
+              this.listarClientes()
+            })
+          }else{
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'El cliente no puede ser eliminado ya que tiene una cuenta vinculada!',
+              showConfirmButton: false,
+              timer: 2500
+            })
+          }
         })
       }
     });

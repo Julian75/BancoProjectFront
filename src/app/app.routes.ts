@@ -4,6 +4,7 @@ import { AgregarClienteComponent } from './components/clientes/agregar-cliente/a
 import { ModificarClienteComponent } from './components/clientes/modificar-cliente/modificar-cliente.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { TransaccionesComponent } from './components/transacciones/transacciones.component';
+import { AgregarProductoComponent } from './components/productos/agregar-producto/agregar-producto.component';
 
 export const routes: Routes = [
     { 

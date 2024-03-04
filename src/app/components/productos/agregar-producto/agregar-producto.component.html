@@ -1,0 +1,36 @@
+<div class="contenedor">
+    <form [formGroup]="formulario">
+        <div class="row">
+            <div class="col-12">
+                <h2>Tipo Cuenta</h2>
+                <mat-form-field>
+                    <mat-label>Seleccione Tipo Cuenta</mat-label>
+                    <mat-select formControlName="tipoCuenta">
+                        @for (tipo of tiposCuentas; track tipo){
+                            <mat-option [value]="tipo">{{tipo}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <h2>Saldo Cuenta</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese el saldo de la cuenta</mat-label>
+                    <input formControlName="saldo" type="number" matInput>
+                </mat-form-field>
+            </div>
+            <div class="col-12">
+                <h2>Responsable Cuenta</h2>
+                <mat-form-field>
+                    <mat-label>Seleccione al Cliente</mat-label>
+                    <mat-select formControlName="cliente">
+                        @for (cliente of listaClientes; track cliente.id){
+                            <mat-option [value]="cliente.id">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button style="background-color: #0dcaf0;" (click)="guardarProducto()"><mat-icon>add</mat-icon></button>
+    </form>
+</div>

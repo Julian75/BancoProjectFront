@@ -1,1 +1,49 @@
-<p>transacciones works!</p>
+<div class="contenedor">
+    <form [formGroup]="formulario">
+        <div class="row">
+            <div class="col-4">
+                <h2>Tipo Transaccion</h2>
+                <mat-form-field>
+                    <mat-label>Seleccione Tipo Transaccion</mat-label>
+                    <mat-select (selectionChange)="seleccionTransaccion($event)" formControlName="tipoTransaccion">
+                        @for (tipo of tipoTransacciones; track tipo){
+                            <mat-option [value]="tipo">{{tipo}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <h2>Responsable Cuenta</h2>
+                <mat-form-field>
+                    <mat-label>Seleccione al Cliente</mat-label>
+                    <mat-select formControlName="cuentaPrincipal">
+                        @for (cliente of listaClientes; track cliente.id){
+                            <mat-option [value]="cliente.id">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <h2>Saldo Cuenta</h2>
+                <mat-form-field>
+                    <mat-label>Ingrese el saldo de la cuenta</mat-label>
+                    <input formControlName="saldo" type="number" matInput>
+                </mat-form-field>
+            </div>
+            @if(seleccion == "Transferencia"){
+                <div class="col-4">
+                    <h2>Cuenta a Transferir</h2>
+                    <mat-form-field>
+                        <mat-label>Seleccione la cuenta</mat-label>
+                        <mat-select formControlName="cuentaSecundaria">
+                            @for (cliente2 of listaClientes2; track cliente2.id){
+                                <mat-option [value]="cliente2.id">{{cliente2.nombres}} {{cliente2.apellidos}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            }
+        </div>
+        <button mat-raised-button style="background-color: #0dcaf0;" (click)="guardarTransaccion()"><mat-icon>add</mat-icon></button>
+    </form>
+</div>
